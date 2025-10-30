@@ -78,5 +78,12 @@ None required; this is a pure MV3 extension. Reload from `chrome://extensions` a
 ## Contributing
 PRs and issues welcome. Please describe the AI app and browser build if you’re reporting site‑specific selector issues.
 
-## License
-MIT
+## 📜 License
+This project is licensed under the **MIT License** — see the [LICENSE](./LICENSE) file for details.
+
+---
+
+## 🪴 Credits
+Built with ❤️ for the **Google Chrome Built-in AI Challenge 2025**, powered by **Gemini Nano**.
+
+> “Measure what matters. Mind your usage. Minimize your footprint.”
