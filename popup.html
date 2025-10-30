@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mirathym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div id="app" class="popup">
+    <header class="header" aria-live="polite">
+      <div class="brand">
+        <div class="leaf" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="leaf-svg">
+            <path d="M4 13c0 4 3 7 7 7 6 0 9-6 9-12V5h-3C10 5 4 7 4 13Z" stroke="currentColor" stroke-width="1.5" fill="currentColor"/>
+          </svg>
+          <div class="pulse" aria-hidden="true"></div>
+        </div>
+        <div>
+          <div class="title" aria-label="Mirathym">Mirathym</div>
+          <div class="tag">“Measure. Mind. Minimize.”</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content" role="main">
+      <section class="metrics" aria-label="Live Metrics">
+        <div class="metric" tabindex="0" data-tip="Total tokens generated for the last prompt.">
+          <div class="metric-emoji" aria-hidden="true">🧩</div>
+          <div class="metric-label">Tokens Used</div>
+          <div class="metric-value" id="tokensValue">0</div>
+          <svg class="ring" viewBox="0 0 36 36" aria-hidden="true">
+            <path class="bg" d="M18 2a16 16 0 1 1 0 32 16 16 0 0 1 0-32"/>
+            <path class="fg" id="tokensRing" d="M18 2a16 16 0 1 1 0 32 16 16 0 0 1 0-32"/>
+          </svg>
+        </div>
+        <div class="metric" tabindex="0" data-tip="How efficiently your prompt used compute.">
+          <div class="metric-emoji" aria-hidden="true">⚡</div>
+          <div class="metric-label">Efficiency</div>
+          <div class="metric-value" id="efficiencyValue">0%</div>
+          <svg class="ring" viewBox="0 0 36 36" aria-hidden="true">
+            <path class="bg" d="M18 2a16 16 0 1 1 0 32 16 16 0 0 1 0-32"/>
+            <path class="fg" id="efficiencyRing" d="M18 2a16 16 0 1 1 0 32 16 16 0 0 1 0-32"/>
+          </svg>
+        </div>
+        <div class="metric" tabindex="0" data-tip="Time from request to response.">
+          <div class="metric-emoji" aria-hidden="true">🕐</div>
+          <div class="metric-label">Load Time</div>
+          <div class="metric-value" id="loadTimeValue">0.0s</div>
+          <canvas id="sparkline" width="100" height="28" aria-label="Latency trend" role="img"></canvas>
+        </div>
+        <div class="metric" tabindex="0" data-tip="Current CPU usage while processing.">
+          <div class="metric-emoji" aria-hidden="true">💻</div>
+          <div class="metric-label">CPU Load</div>
+          <div class="metric-value" id="cpuValue">0%</div>
+          <div class="bar"><div id="cpuBar" class="bar-fill" style="width:0%"></div></div>
+        </div>
+      </section>
+
+      <section class="co2" aria-label="CO2 Emission">
+        <div class="co2-bubble" id="co2Bubble" aria-hidden="true"></div>
+        <div class="co2-text" id="co2Text">This prompt emitted <strong>0.000 g CO₂</strong> — equivalent to charging your phone for 0 seconds.</div>
+        <div class="impact">
+          <div class="impact-bar"><div id="impactFill" class="impact-fill"></div></div>
+          <div class="impact-legend">
+            <span class="low">Low</span>
+            <span class="mid">Med</span>
+            <span class="high">High</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="tips" aria-label="Suggestions">
+        <div class="section-title">
+          <span>🌿 Make It Greener</span>
+          <button id="refreshTip" class="icon-btn" aria-label="Refresh tip" title="Refresh tip">⟳</button>
+        </div>
+        <ul id="tipsList" class="tips-list"></ul>
+      </section>
+
+      <section class="system" aria-label="System Health">
+        <div class="section-title">System Health</div>
+        <div class="prog">
+          <div class="prog-row">
+            <span>CPU temperature</span>
+            <div class="hbar"><div class="hbar-fill" id="cpuTemp" style="width:0%"></div></div>
+          </div>
+          <div class="prog-row">
+            <span>GPU usage</span>
+            <div class="hbar"><div class="hbar-fill" id="gpuUsage" style="width:0%"></div></div>
+          </div>
+          <div class="prog-row">
+            <span>NPU wear</span>
+            <div class="hbar"><div class="hbar-fill" id="npuWear" style="width:0%"></div></div>
+          </div>
+          <div class="sys-note" id="sysNote">Your NPU handled 0 inferences this week. Keep it cool for longer life.</div>
+        </div>
+      </section>
+
+      <section class="facts" aria-label="Global Facts">
+        <div class="section-title">🌎 Did You Know?</div>
+        <div class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel" aria-label="CO2 Facts">
+          <div class="track" id="carouselTrack"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="quote">Together, we can make AI greener. 🌱</div>
+      <div class="actions">
+        <button id="recalcBtn" class="btn">Recalculate</button>
+        <button id="scoreBtn" class="btn btn-accent">View My Green Score</button>
+        <button id="saveBtn" class="btn btn-ghost">Save as PDF</button>
+      </div>
+    </footer>
+
+    <dialog id="scoreModal" class="modal" aria-label="Green Score">
+      <div class="modal-body">
+        <h3>Your Green Score</h3>
+        <div id="greenScore" class="score">—</div>
+        <button id="closeModal" class="btn wfull">Close</button>
+      </div>
+    </dialog>
+
+    <div id="savePopover" class="popover" role="dialog" aria-modal="false" aria-hidden="true">
+      <button id="savePdfBtn" class="btn wfull">Save PDF</button>
+    </div>
+  </div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
