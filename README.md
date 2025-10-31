@@ -87,3 +87,5 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 Built with ❤️ for the **Google Chrome Built-in AI Challenge 2025**, powered by **Gemini Nano**.
 
 > “Measure what matters. Mind your usage. Minimize your footprint.”
+
+🎥 **Watch Demo:** [https://youtu.be/H6en059ZnfA](https://youtu.be/H6en059ZnfA)
