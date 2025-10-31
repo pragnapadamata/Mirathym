@@ -82,6 +82,10 @@ PRs and issues welcome. Please describe the AI app and browser build if you’re
 This project is licensed under the **MIT License** — see the [LICENSE](./LICENSE) file for details.
 
 ---
+## 🎥 Demo
+
+Check out the full project demo here:  
+[Watch the video](https://youtu.be/H6en059ZnfA)
 
 ## Credits
 Built with ❤️ for the **Google Chrome Built-in AI Challenge 2025**, powered by **Gemini Nano**.
